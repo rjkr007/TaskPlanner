@@ -112,7 +112,7 @@
                   <th>Task</th>
                   <th>Assigned To</th>
                   <th>Due Date</th>
-                  <th>Details</th>
+                  <th>Details/Edit Task</th>
                   
                   <th></th>
                 </tr>
@@ -124,7 +124,8 @@
                   <td>Groceries</td>
                   <td>Nov 10 2020</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal" >
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -135,7 +136,8 @@
                   <td>Christmas Shopping</td>
                   <td>Dec 11 2020</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -146,7 +148,8 @@
                   <td>Sprint 3</td>
                   <td>Dec 13 2020</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -157,7 +160,8 @@
                   <td>Paint House</td>
                   <td>Jan 21 2021</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -168,7 +172,8 @@
                   <td>Homework</td>
                   <td>Dec 17 2020</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -179,7 +184,8 @@
                   <td>Health & Wellness</td>
                   <td>March 20 2021</td>
                   <td>
-                    <a href="" class="btn btn-secondary">
+                    <!-- <a href="" class="btn btn-secondary"> -->
+                      <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#editPostModal">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td>
@@ -196,13 +202,88 @@
             <div class="card-body">
               <h4>Task/Edit</h4>
               <h4 class="display-4">
-                <i class="fas fa-pencil-alt"></i> 6
+                <i class="fas fa-pencil-alt"></i> 
               </h4>
-              <a href="" class="btn btn-outline-light btn-sm">View</a>
+              <!-- <a href="" class="btn btn-outline-light btn-sm">View</a> -->
+              <a href="posts.html" class="btn btn-outline-light btn-sm" >View</a>
             </div>
           </div>
 
           <!-- Start TASK/EDIT section -->
+
+<!-- Task Edit/View Modal -->
+
+
+<div class="modal fade" id="editPostModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Edit Task</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="title">Task Name</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                        <label for="newTaskDescription">Description</label>
+                        <textarea type="text" class="form-control" id="newTaskDescription"></textarea>
+                    </div>
+           
+            <div class="form-group">
+              <label for="title">Assigned To</label>
+              <input type="text" class="form-control">
+            </div>
+              <div class="form-group col">
+                            <label for="newTaskDueDate">Due Date</label>
+                            <input type="date" class="form-control" id="newTaskDueDate">
+                        </div>
+            
+            <div class="form-group">
+              <label for="category">STATUS</label>
+              <select class="form-control">
+                <option value="">TO DO</option>
+                <option value="">IN PROGRESS</option>
+                <option value="">REVIEW</option>
+                <option value="">DONE</option>
+              </select>
+            
+            
+                    <button type="submit" class="btn btn-primary btn-block pr-2">Add Task</button>
+                </form>
+            
+
+
+
+<!-- ACTIONS -->
+
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <!-- <div class="row"> -->
+        <div class="col-md-3">
+          <a href="index.html" class="btn btn-light btn-block">
+            <i class="fas fa-arrow-left"></i> Back To Dashboard
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="index.html" class="btn btn-success ">
+            <i class="fas fa-check"></i> Save Changes
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="index.html" class="btn btn-danger ">
+            <i class="fas fa-trash"></i> Delete Task
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
 
 
