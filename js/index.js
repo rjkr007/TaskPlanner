@@ -53,8 +53,6 @@ function validFormFieldInput(data) {
   return data !== null && data !== "";
 }
 
-
-
 // // Select the Edit Task Form
 const editTaskForm = document.querySelector("#editTaskForm");
 
@@ -113,4 +111,3 @@ editTaskForm.addEventListener("submit", (event) => {
 function validFormFieldInput(data) {
   return data !== null && data !== "";
 }
-
