@@ -68,11 +68,45 @@ newTaskForm.addEventListener("submit", (event) => {
   } else {
     errorMessageDD.style.display = "none";
   }
-  taskmanager.addTask(name, description, assignedTo, status, dueDate);
+  // if (
+  //   newTaskNameInput.value != "" &&
+  //   newTaskDescription.value != "" &&
+  //   newTaskAssignedTo.value != "" &&
+  //   newStatus.value != "" &&
+  //   newTaskDueDate.value != ""
+  // )
+  //  {
+    
+    taskmanager.addTask(name, description, assignedTo, status, dueDate);
 
-  taskmanager.render();
+    taskmanager.render();
 
-  $("#addPostModal").modal("hide");
+    $("#addPostModal").modal("hide");
+  // }
+});
+
+// Select the Tasks List
+const tasksList = document.querySelector("#tasksList");
+
+// Add an 'onclick' event listener to the Tasks List
+tasksList.addEventListener("click", (event) => {
+  // Check if a "Mark As Done" button was clicked
+  if (event.target.classList.contains("done-button")) {
+    // Get the parent Task
+    const parentTask = event.target.parentElement.parentElement.parentElement;
+    // alert(parentTask);
+    // Get the taskId of the parent Task.
+    const taskId = Number(parentTask.dataset.taskId);
+    // alert(taskId);
+    // Get the task from the TaskManager using the taskId
+    const task = taskmanager.getTaskById(taskId);
+
+    // Update the task status to 'DONE'
+    task.status = "DONE";
+
+    // Render the tasks
+    taskmanager.render();
+  }
 });
 
 function validFormFieldInput(data) {
@@ -146,6 +180,32 @@ editTaskForm.addEventListener("submit", (event) => {
 function validFormFieldInput(data) {
   return data !== null && data !== "";
 }
+
+// // Select the Tasks List
+// const tasksList = document.querySelector("#tasksList");
+
+// // Add an 'onclick' event listener to the Tasks List
+// tasksList.addEventListener("click", (event) => {
+//   // Check if a "Mark As Done" button was clicked
+//   if (event.target.classList.contains("done-button")) {
+//     // Get the parent Task
+//     const parentTask = event.target.parentElement.parentElement;
+
+//     // Get the taskId of the parent Task.
+//     const taskId = Number(parentTask.dataset.taskId);
+
+//     // Get the task from the TaskManager using the taskId
+//     const task = taskmanager.getTaskById(taskId);
+
+//     // Update the task status to 'DONE'
+//     task.status = "DONE";
+
+//     // Render the tasks
+//     taskmanager.render();
+//   }
+// });
+
+// console.log(`parentTask`);
 
 // const task = new TaskManager();
 // console.log(task.tasks);
