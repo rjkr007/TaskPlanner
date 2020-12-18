@@ -1,7 +1,14 @@
 // Create function createTaskHtml
 
-const createTaskHtml = (taskName, description, assignTo, status, dueDate) => `
-<div class="container">
+const createTaskHtml = (
+  id,
+  taskName,
+  description,
+  assignTo,
+  status,
+  dueDate
+) => `
+<div class="container" >
       <div class="row">
         <div class="col-md-9">
           <div class="card">
@@ -14,19 +21,26 @@ const createTaskHtml = (taskName, description, assignTo, status, dueDate) => `
                   <th>Assigned to</th>
                   <th>Status</th>
                   <th>Due Date</th>
+                  <th>Mark As Done</th>
                   <th>Edit Task</th>
                   <th>Delete</th>
                  </tr>
               </thead>
               <tbody>
-                  <tr>
+                  <tr data-task-id=${id}>
         
                   <td>${taskName}</td>
                   <td>${description}</td>
                   <td>${assignTo}</td>
                   <td>${status}</td>    
                   <td>${dueDate}</td>    
-                  
+                 <td> 
+<div class="d-flex w-100 justify-content-end">
+            <button class="btn btn-outline-success done-button ${
+              status === "To Do"
+            }">Mark As Done</button>
+        </div>
+</td>
                   <td>
                     <!-- <a href="" class="btn btn-secondary"> -->
                     <button
@@ -74,7 +88,29 @@ class TaskManager {
       status: "To Do",
       duedate: dueDate,
     };
-    this.tasks.push(newTask);
+       this.tasks.push(newTask);
+  
+  }
+
+
+  getTaskById(taskId) {
+    // variable to store the found task
+    let foundTask;
+
+    // Loop over the tasks and find the task with the id passed as a parameter
+    for (let i = 0; i < this.tasks.length; i++) {
+      // current task in the loop
+      const task = this.tasks[i];
+
+      // Check if its the right task by comparing the task's id to the id passed as a parameter
+      if (task.id === taskId) {
+        // Store the task in the foundTask variable
+        foundTask = task;
+      }
+    }
+
+    // Return the found task
+    return foundTask;
   }
 
   // Create the render method
@@ -92,11 +128,12 @@ class TaskManager {
         date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
       // Create the task html
       const taskHtml = createTaskHtml(
+        task.id,
         task.taskname,
         task.description,
         task.assignedto,
-        formattedDate,
-        task.status
+        task.status,
+        formattedDate
       );
 
       // Push it to the tasksHtmlList array
