@@ -88,10 +88,8 @@ class TaskManager {
       status: "To Do",
       duedate: dueDate,
     };
-       this.tasks.push(newTask);
-  
+    this.tasks.push(newTask);
   }
-
 
   getTaskById(taskId) {
     // variable to store the found task
