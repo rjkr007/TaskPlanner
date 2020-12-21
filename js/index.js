@@ -1,3 +1,5 @@
+document.querySelector("body").style.backgroundColor = "#e6faff";
+
 // Create a `taskHtml` variable with the result of calling the `createTaskHtml` function,
 //  making sure to pass a value for each parameter.
 // const taskHtml = document.querySelector(".container1");
@@ -76,12 +78,12 @@ newTaskForm.addEventListener("submit", (event) => {
   //   newTaskDueDate.value != ""
   // )
   //  {
-    
-    taskmanager.addTask(name, description, assignedTo, status, dueDate);
 
-    taskmanager.render();
+  taskmanager.addTask(name, description, assignedTo, status, dueDate);
 
-    $("#addPostModal").modal("hide");
+  taskmanager.render();
+
+  $("#addPostModal").modal("hide");
   // }
 });
 
