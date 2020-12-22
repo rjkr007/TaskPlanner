@@ -2,10 +2,7 @@
    width: 50%;
  }
 
- /* .py-4{
-  border: solid rgb(55, 213, 241);
-
- } */
+ 
  .done-button{
   padding: 5px;
   background-color: rgb(168, 248, 195);
@@ -25,3 +22,4 @@ h6 {
   justify-content: center;
   align-items: center;
 }
+
