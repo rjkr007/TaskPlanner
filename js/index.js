@@ -1,5 +1,19 @@
 document.querySelector("body").style.backgroundColor = "#e6faff";
 
+// const modal = document.querySelector(".modal");
+
+// const closeModal = function () {
+//   modal.classList.add("hidden");
+//   // overlay.classList.add("hidden");
+// };
+
+// document.addEventListener("keydown", function (e) {
+//   console.log(e.key);
+//   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+//     closeModal();
+//   }
+// });
+
 // Create a `taskHtml` variable with the result of calling the `createTaskHtml` function,
 //  making sure to pass a value for each parameter.
 // const taskHtml = document.querySelector(".container1");
@@ -40,51 +54,67 @@ newTaskForm.addEventListener("submit", (event) => {
   // TaskManager.addTask(name, description, assignedTo, status, dueDate);
 
   // Clear the form
-  newTaskNameInput.value = "";
-  newTaskDescription.value = "";
-  newTaskAssignedTo.value = "";
-  newStatus.value = "";
-  newTaskDueDate.value = "";
+  // newTaskNameInput.value = "";
+  // newTaskDescription.value = "";
+  // newTaskAssignedTo.value = "";
+  // newStatus.value = "";
+  // newTaskDueDate.value = "";
 
   if (!validFormFieldInput(name)) {
     errorMessageTN.innerHTML = "Invalid Name";
     errorMessageTN.style.display = "block";
-  } else {
-    errorMessageTN.style.display = "none";
+    newTaskNameInput.focus();
   }
-  if (!validFormFieldInput(description)) {
+  // else {
+  //   errorMessageTN.style.display = "none";
+  // }
+  else if (!validFormFieldInput(description)) {
     errorMessageTDES.innerHTML = "Invalid description";
     errorMessageTDES.style.display = "block";
-  } else {
-    errorMessageTDES.style.display = "none";
+    newTaskDescription.focus();
   }
-  if (!validFormFieldInput(assignedTo)) {
+  // else {
+  //   errorMessageTDES.style.display = "none";
+  // }
+  else if (!validFormFieldInput(assignedTo)) {
     errorMessageASSTO.innerHTML = "Invalid Assigned To";
     errorMessageASSTO.style.display = "block";
-  } else {
-    errorMessageASSTO.style.display = "none";
+    newTaskAssignedTo.focus();
   }
-  if (!validFormFieldInput(dueDate)) {
+  // else {
+  //   errorMessageASSTO.style.display = "none";
+  // }
+  else if (!validFormFieldInput(dueDate)) {
     errorMessageDD.innerHTML = "Invalid Due Date";
     errorMessageDD.style.display = "block";
+    newTaskDueDate.focus();
   } else {
+    errorMessageTN.style.display = "none";
+    errorMessageTDES.style.display = "none";
+    errorMessageASSTO.style.display = "none";
     errorMessageDD.style.display = "none";
+    // if (
+    //   newTaskNameInput.value != "" &&
+    //   newTaskDescription.value != "" &&
+    //   newTaskAssignedTo.value != "" &&
+    //   newStatus.value != "" &&
+    //   newTaskDueDate.value != ""
+    // )
+    //  {
+
+    taskmanager.addTask(name, description, assignedTo, status, dueDate);
+
+    taskmanager.render();
+
+    $("#addPostModal").modal("hide");
+
+    // Clear the form
+    newTaskNameInput.value = "";
+    newTaskDescription.value = "";
+    newTaskAssignedTo.value = "";
+    newStatus.value = "";
+    newTaskDueDate.value = "";
   }
-  // if (
-  //   newTaskNameInput.value != "" &&
-  //   newTaskDescription.value != "" &&
-  //   newTaskAssignedTo.value != "" &&
-  //   newStatus.value != "" &&
-  //   newTaskDueDate.value != ""
-  // )
-  //  {
-
-  taskmanager.addTask(name, description, assignedTo, status, dueDate);
-
-  taskmanager.render();
-
-  $("#addPostModal").modal("hide");
-  // }
 });
 
 // Select the Tasks List
@@ -112,7 +142,12 @@ tasksList.addEventListener("click", (event) => {
 });
 
 function validFormFieldInput(data) {
-  return data !== null && data !== "";
+  // return data !== null && data !== "";
+  if (data.trim().length === 0) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 // // Select the Edit Task Form

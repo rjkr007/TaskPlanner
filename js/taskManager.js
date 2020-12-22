@@ -15,7 +15,7 @@ const createTaskHtml = (
             </div>
             <table class="table table-striped">
               <thead class="thead-dark">
-                <tr>
+<tr>
                   <th>Task Name</th>
                   <th>Task Description</th>
                   <th>Assigned to</th>
@@ -24,7 +24,7 @@ const createTaskHtml = (
                   <th>Mark As Done</th>
                   <th>Edit Task</th>
                   <th>Delete</th>
-                 </tr>
+                 </tr>                             
               </thead>
               <tbody>
                   <tr data-task-id=${id}>
