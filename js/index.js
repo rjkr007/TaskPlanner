@@ -1,23 +1,5 @@
+//Change  body background color
 document.querySelector("body").style.backgroundColor = "#e6faff";
-
-// const modal = document.querySelector(".modal");
-
-// const closeModal = function () {
-//   modal.classList.add("hidden");
-//   // overlay.classList.add("hidden");
-// };
-
-// document.addEventListener("keydown", function (e) {
-//   console.log(e.key);
-//   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-//     closeModal();
-//   }
-// });
-
-// Create a `taskHtml` variable with the result of calling the `createTaskHtml` function,
-//  making sure to pass a value for each parameter.
-// const taskHtml = document.querySelector(".container1");
-// console.log(taskHtml);
 
 // Initialize a new TaskManager with currentId set to 0
 const taskmanager = new TaskManager(0);
@@ -36,10 +18,12 @@ newTaskForm.addEventListener("submit", (event) => {
   const newTaskAssignedTo = document.querySelector("#newTaskAssignedTo");
   const newStatus = document.querySelector("#newStatus");
   const newTaskDueDate = document.querySelector("#newTaskDueDate");
+  const newDateToday = new Date();
   const errorMessageTN = document.querySelector("#alertMessageTN");
   const errorMessageTDES = document.querySelector("#alertMessageTDES");
   const errorMessageASSTO = document.querySelector("#alertMessageASSTO");
   const errorMessageDD = document.querySelector("#alertMessageDD");
+
   /*
         Validation code here
     */
@@ -49,16 +33,9 @@ newTaskForm.addEventListener("submit", (event) => {
   const description = newTaskDescription.value;
   const assignedTo = newTaskAssignedTo.value;
   const status = newStatus.value;
-  const dueDate = newTaskDueDate.value;
-  // // Add the task to the task manager
-  // TaskManager.addTask(name, description, assignedTo, status, dueDate);
-
-  // Clear the form
-  // newTaskNameInput.value = "";
-  // newTaskDescription.value = "";
-  // newTaskAssignedTo.value = "";
-  // newStatus.value = "";
-  // newTaskDueDate.value = "";
+  const dueDate = newTaskDueDate.value.trim()
+    ? new Date(newTaskDueDate.value)
+    : null;
 
   if (!validFormFieldInput(name)) {
     errorMessageTN.innerHTML = "Invalid Name";
@@ -84,7 +61,7 @@ newTaskForm.addEventListener("submit", (event) => {
   // else {
   //   errorMessageASSTO.style.display = "none";
   // }
-  else if (!validFormFieldInput(dueDate)) {
+  else if (newTaskDueDate.value == null || dueDate < newDateToday) {
     errorMessageDD.innerHTML = "Invalid Due Date";
     errorMessageDD.style.display = "block";
     newTaskDueDate.focus();
@@ -93,14 +70,6 @@ newTaskForm.addEventListener("submit", (event) => {
     errorMessageTDES.style.display = "none";
     errorMessageASSTO.style.display = "none";
     errorMessageDD.style.display = "none";
-    // if (
-    //   newTaskNameInput.value != "" &&
-    //   newTaskDescription.value != "" &&
-    //   newTaskAssignedTo.value != "" &&
-    //   newStatus.value != "" &&
-    //   newTaskDueDate.value != ""
-    // )
-    //  {
 
     taskmanager.addTask(name, description, assignedTo, status, dueDate);
 
@@ -125,7 +94,7 @@ tasksList.addEventListener("click", (event) => {
   // Check if a "Mark As Done" button was clicked
   if (event.target.classList.contains("done-button")) {
     // Get the parent Task
-    const parentTask = event.target.parentElement.parentElement.parentElement;
+    const parentTask = event.target.parentElement.parentElement;
     // alert(parentTask);
     // Get the taskId of the parent Task.
     const taskId = Number(parentTask.dataset.taskId);
@@ -217,32 +186,3 @@ editTaskForm.addEventListener("submit", (event) => {
 function validFormFieldInput(data) {
   return data !== null && data !== "";
 }
-
-// // Select the Tasks List
-// const tasksList = document.querySelector("#tasksList");
-
-// // Add an 'onclick' event listener to the Tasks List
-// tasksList.addEventListener("click", (event) => {
-//   // Check if a "Mark As Done" button was clicked
-//   if (event.target.classList.contains("done-button")) {
-//     // Get the parent Task
-//     const parentTask = event.target.parentElement.parentElement;
-
-//     // Get the taskId of the parent Task.
-//     const taskId = Number(parentTask.dataset.taskId);
-
-//     // Get the task from the TaskManager using the taskId
-//     const task = taskmanager.getTaskById(taskId);
-
-//     // Update the task status to 'DONE'
-//     task.status = "DONE";
-
-//     // Render the tasks
-//     taskmanager.render();
-//   }
-// });
-
-// console.log(`parentTask`);
-
-// const task = new TaskManager();
-// console.log(task.tasks);

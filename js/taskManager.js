@@ -13,39 +13,31 @@ const createTaskHtml = (
         <div class="col-md-9">
           <div class="card">
             </div>
-            <table class="table table-striped">
-              <thead class="thead-dark">
-<tr>
-                  <th>Task Name</th>
-                  <th>Task Description</th>
-                  <th>Assigned to</th>
-                  <th>Status</th>
-                  <th>Due Date</th>
-                  <th>Mark As Done</th>
-                  <th>Edit Task</th>
-                  <th>Delete</th>
-                 </tr>                             
-              </thead>
-              <tbody>
+            <table class="table">
+              
+              
                   <tr data-task-id=${id}>
         
                   <td>${taskName}</td>
                   <td>${description}</td>
                   <td>${assignTo}</td>
-                  <td>${status}</td>    
+                  <td id="done" type="button" class="btn ${
+                    status === "To Do"
+                      ? "btn-outline-danger"
+                      : "btn-outline-success"
+                  }">
+${status}</td>    
                   <td>${dueDate}</td>    
                  <td> 
-<div class="d-flex w-100 justify-content-end">
-            <button class="btn btn-outline-success done-button ${
-              status === "To Do"
-            }">Mark As Done</button>
-        </div>
-</td>
+             <button class="btn btn-outline-success done-button ${
+               status === "To Do" ? "visible" : "invisible"
+             }">Mark As Done</button>
+       </td>
                   <td>
                     <!-- <a href="" class="btn btn-secondary"> -->
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-outline-primary"
                       data-toggle="modal"
                       data-target="#editPostModal"
                     >
@@ -54,15 +46,14 @@ const createTaskHtml = (
                   </td>
                   <td>
                     <div class="col-md-3">
-                      <a href="index.html" class="btn btn-danger">
+                      <a href="index.html" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i>
                         <!-- <i class="fas fa-trash"></i> Delete -->
                       </a>
                     </div>
                   </td>
-
                   </tr>
-                </tbody>
+              
             </table>
           </div>
         </div>
@@ -147,24 +138,3 @@ class TaskManager {
     }
   }
 }
-// }
-
-// const taskman = new TaskManager();
-
-// taskman.addTask();
-
-// Call addTask method
-// taskman.addTask(
-//   "Groceries",
-//   "Purchase Groceries",
-//   "John",
-//   "2021-01-10",
-//   "TODO"
-// );
-// // taskman.addTask(
-// //   "Childern's Books",
-// //   "Time to Play",
-// //   "Bluey",
-// //   "./images/bluey.jpg"
-// // );
-// console.log(taskman.tasks);

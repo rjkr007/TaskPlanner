@@ -1,13 +1,12 @@
- .addTask {
-   width: 50%;
- }
+.addTask {
+  width: 50%;
+}
 
- 
- .done-button{
+.done-button {
   padding: 5px;
-  background-color: rgb(168, 248, 195);
+  background-color: rgb(239, 248, 242);
   margin-right: auto;
-
+  font-weight: bold;
 }
 
 h4 {
@@ -23,3 +22,25 @@ h6 {
   align-items: center;
 }
 
+.hidden {
+  display: none;
+}
+
+#done {
+  margin-top: 15px;
+  margin-left: 13px;
+  height: 35px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.btn-outline-primary {
+  font-weight: bold;
+  background-color: rgb(240, 240, 250);
+}
+
+footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
