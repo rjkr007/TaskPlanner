@@ -11,8 +11,7 @@ const createTaskHtml = (
 <div class="container" >
       <div class="row">
         <div class="col-md-9">
-          <div class="card">
-            </div>
+         
             <table class="table">
               
               
@@ -46,8 +45,8 @@ ${status}</td>
                   </td>
                   <td>
                     <div class="col-md-3">
-                      <a href="index.html" class="btn btn-outline-danger">
-                        <i class="fas fa-trash"></i>
+                      <a href="#" class="btn btn-outline-danger">
+                        <i class="fas fa-trash delete-button"></i>
                         <!-- <i class="fas fa-trash"></i> Delete -->
                       </a>
                     </div>
@@ -82,6 +81,20 @@ class TaskManager {
     this.tasks.push(newTask);
   }
 
+  //delete task
+
+  deleteTask(taskId) {
+    const newTask = [];
+    // Loop over the tasks and find the task with the id passed as a parameter
+    for (let i = 0; i < this.tasks.length; i++) {
+      // current task in the loop
+      const task = this.tasks[i];
+      if (task.id !== taskId) {
+        newTasks.push(task);
+      }
+    }
+    this.tasks = newTasks;
+  }
   getTaskById(taskId) {
     // variable to store the found task
     let foundTask;
@@ -136,5 +149,33 @@ class TaskManager {
       const tasksList = document.querySelector("#tasksList");
       tasksList.innerHTML = tasksHtml;
     }
+    // save()
+    // {
+    //   const tasksJson = JSON.stringify(this.tasks);
+    //   localStorage.setItem("tasks", tasksJson);
+    //   const currentId = String(this.currentId);
+    //   localStorage.setItem("currentId", currentId);
+    // }
+    // // //// Create the load method
+    // load()
+    // {
+    //   // Check if any tasks are saved in localStorage
+    //   if (localStorage.getItem("tasks")) {
+    //     // Get the JSON string of tasks in localStorage
+    //     const tasksJson = localStorage.getItem("tasks");
+
+    //     // Convert it to an array and store it in our TaskManager
+    //     this.tasks = JSON.parse(tasksJson);
+    //   }
+
+    //   //     // Check if the currentId is saved in localStorage
+    //   if (localStorage.getItem("currentId")) {
+    //     //       // Get the currentId string in localStorage
+    //     const currentId = localStorage.getItem("currentId");
+
+    //     //       // Convert the currentId to a number and store it in our TaskManager
+    //     this.currentId = Number(currentId);
+    //   }
+    // }
   }
 }

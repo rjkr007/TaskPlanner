@@ -34,9 +34,37 @@
       </div>
     </header>
 
-    <!-- ADD TASK BUTTON SHARE TASK BUTTON -->
+    <!-- ADD Weather Api , TASK BUTTON SHARE TASK BUTTON -->
 
-    <section class="py-4 mb-4 bg-light text-center">
+<div class="container4">
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-8 col-lg-3">
+          <h3 class="mb-1 justify-content-center row">Check Weather</h3>
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text">In</div>
+            </div>
+            <input
+              id="city-input"
+              class="form-control"
+              type="text"
+              placeholder="Enter a city"
+            />
+            <div class="input-group-append">
+              <button id="go-button" class="btn ">Go!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 justify-content-center">
+        <div id="weather-container" class="col-md-5 col-lg-3"></div>
+      </div>
+    </div>
+
+
+
+
+    <section class="py-1 mb-4 bg-light text-center">
       <div class="container">
         <div class="row">
           <div class="col-md-3">
@@ -64,7 +92,7 @@
             </div>
 
             <table class="table">
-              <thead class="thead-dark">
+              <thead class="thead-light">
                 <tr>
                   <th>Task Name</th>
                   <th>Task Description</th>
@@ -301,7 +329,7 @@
 
     <!-- FOOTER -->
 
-    <footer id="main-footer" class="bg-dark text-white mt-5 text-center pr-2">
+    <footer id="main-footer" class="bg-primary text-white mt-5 text-center pr-2">
       <div class="container">
         <!-- <div class="row">
           <div class="col"> -->
@@ -315,8 +343,8 @@
       </div>
     </footer>
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
     <script
@@ -335,6 +363,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/weather.js"></script>
     <script src="./js/taskManager.js"></script>
     <script src="./js/index.js"></script>
   </body>
