@@ -2,7 +2,10 @@
 document.querySelector("body").style.backgroundColor = "#e6faff";
 
 // Initialize a new TaskManager with currentId set to 0
-const taskmanager = new TaskManager(0);
+const taskManager = new TaskManager(0);
+
+// taskManager.load();
+//  taskManager.render();
 
 // Select the New Task Form
 const newTaskForm = document.querySelector("#newTaskForm");
@@ -71,9 +74,10 @@ newTaskForm.addEventListener("submit", (event) => {
     errorMessageASSTO.style.display = "none";
     errorMessageDD.style.display = "none";
 
-    taskmanager.addTask(name, description, assignedTo, status, dueDate);
+    taskManager.addTask(name, description, assignedTo, status, dueDate);
+    // taskManager.save();
 
-    taskmanager.render();
+    taskManager.render();
 
     $("#addPostModal").modal("hide");
 
@@ -100,13 +104,24 @@ tasksList.addEventListener("click", (event) => {
     const taskId = Number(parentTask.dataset.taskId);
     // alert(taskId);
     // Get the task from the TaskManager using the taskId
-    const task = taskmanager.getTaskById(taskId);
+    const task = taskManager.getTaskById(taskId);
 
     // Update the task status to 'DONE'
     task.status = "DONE";
+    // taskManager.save();
 
     // Render the tasks
-    taskmanager.render();
+    taskManager.render();
+  }
+  if (event.target.classList.contains("delete-button")) {
+    // Get the parent Task
+    const parentTask = event.target.parentElement.parentElement;
+    // alert(parentTask);
+    // Get the taskId of the parent Task.
+    const taskId = Number(parentTask.dataset.taskId);
+    taskManager.deleteTask(taskId);
+    taskManager.save();
+    taskManager.render();
   }
 });
 
