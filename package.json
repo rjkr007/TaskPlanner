@@ -1,0 +1,25 @@
+{
+  "name": "taskplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjkr007/taskplanner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjkr007/taskplanner/issues"
+  },
+  "homepage": "https://github.com/rjkr007/taskplanner#readme",
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}

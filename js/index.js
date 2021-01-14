@@ -4,14 +4,15 @@ document.querySelector("body").style.backgroundColor = "#e6faff";
 // Initialize a new TaskManager with currentId set to 0
 const taskManager = new TaskManager(0);
 
-// taskManager.load();
-//  taskManager.render();
+taskManager.load();
+taskManager.render();
 
 // Select the New Task Form
 const newTaskForm = document.querySelector("#newTaskForm");
 
 // Add an 'onsubmit' event listener
 newTaskForm.addEventListener("submit", (event) => {
+  // alert("here");
   // Prevent default action
   event.preventDefault();
 
@@ -27,10 +28,7 @@ newTaskForm.addEventListener("submit", (event) => {
   const errorMessageASSTO = document.querySelector("#alertMessageASSTO");
   const errorMessageDD = document.querySelector("#alertMessageDD");
 
-  /*
-        Validation code here
-    */
-
+  // Validation code here
   // Get the values of the inputs
   const name = newTaskNameInput.value;
   const description = newTaskDescription.value;
@@ -75,8 +73,7 @@ newTaskForm.addEventListener("submit", (event) => {
     errorMessageDD.style.display = "none";
 
     taskManager.addTask(name, description, assignedTo, status, dueDate);
-    // taskManager.save();
-
+    taskManager.save();
     taskManager.render();
 
     $("#addPostModal").modal("hide");
@@ -108,17 +105,20 @@ tasksList.addEventListener("click", (event) => {
 
     // Update the task status to 'DONE'
     task.status = "DONE";
-    // taskManager.save();
+    // Save the tasks to localStorage
+    taskManager.save();
 
     // Render the tasks
     taskManager.render();
   }
+
   if (event.target.classList.contains("delete-button")) {
     // Get the parent Task
-    const parentTask = event.target.parentElement.parentElement;
+    const parentTask = event.target.parentElement.parentElement.parentElement;
     // alert(parentTask);
     // Get the taskId of the parent Task.
     const taskId = Number(parentTask.dataset.taskId);
+    // alert(taskId);
     taskManager.deleteTask(taskId);
     taskManager.save();
     taskManager.render();
@@ -126,6 +126,8 @@ tasksList.addEventListener("click", (event) => {
 });
 
 function validFormFieldInput(data) {
+  // alert("in validate function");
+  // alert(`--${data}--`);
   // return data !== null && data !== "";
   if (data.trim().length === 0) {
     return false;
@@ -134,70 +136,71 @@ function validFormFieldInput(data) {
   }
 }
 
-// // Select the Edit Task Form
-const editTaskForm = document.querySelector("#editTaskForm");
+// // // Select the Edit Task Form
+// const editTaskForm = document.querySelector("#editTaskForm");
 
-// Add an 'onsubmit' event listener
-editTaskForm.addEventListener("submit", (event) => {
-  // Prevent default action
-  event.preventDefault();
+// // Add an 'onsubmit' event listener
+// editTaskForm.addEventListener("submit", (event) => {
+//   // Prevent default action
+//   event.preventDefault();
 
-  // Select the inputs for Edit Task Form
-  const editTaskNameInput = document.querySelector("#editTaskNameInput");
-  const editTaskDescription = document.querySelector("#editTaskDescription");
-  const editTaskAssignedTo = document.querySelector("#editTaskAssignedTo");
-  // const editStatus = document.querySelector("#editStatus");
-  const editTaskDueDate = document.querySelector("#editTaskDueDate");
-  const errorMessageEditTN = document.querySelector("#alertMessageEditTN");
-  const errorMessageEditTDES = document.querySelector("#alertMessageEditTDES");
-  const errorMessageEditASSTO = document.querySelector(
-    "#alertMessageEditASSTO"
-  );
-  const errorMessageEditDD = document.querySelector("#alertMessageEditDD");
+//   // Select the inputs for Edit Task Form
+//   const editTaskNameInput = document.querySelector("#editTaskNameInput");
+//   const editTaskDescription = document.querySelector("#editTaskDescription");
+//   const editTaskAssignedTo = document.querySelector("#editTaskAssignedTo");
+//   // const editStatus = document.querySelector("#editStatus");
+//   const editTaskDueDate = document.querySelector("#editTaskDueDate");
+//   const errorMessageEditTN = document.querySelector("#alertMessageEditTN");
+//   const errorMessageEditTDES = document.querySelector("#alertMessageEditTDES");
+//   const errorMessageEditASSTO = document.querySelector(
+//     "#alertMessageEditASSTO"
+//   );
+//   const errorMessageEditDD = document.querySelector("#alertMessageEditDD");
 
-  /*
-      Validation code here
-  */
+//   /*
+//       Validation code here
+//   */
 
-  // Get the values of the inputs
-  const editName = editTaskNameInput.value;
-  const editDescription = editTaskDescription.value;
-  const editAssignedTo = editTaskAssignedTo.value;
-  // const editStatus = editStatus.value;
-  const editDueDate = editTaskDueDate.value;
+//   // Get the values of the inputs
+//   const editName = editTaskNameInput.value;
+//   const editDescription = editTaskDescription.value;
+//   const editAssignedTo = editTaskAssignedTo.value;
+//   // const editStatus = editStatus.value;
+//   const editDueDate = editTaskDueDate.value;
 
-  // // Clear the form
-  // editTaskNameInput.value = "";
-  // editTaskDescription.value = "";
-  // editTaskAssignedTo.value = "";
-  // editStatus.value = "";
-  // editTaskDueDate.value = "";
+//   // // Clear the form
+//   // editTaskNameInput.value = "";
+//   // editTaskDescription.value = "";
+//   // editTaskAssignedTo.value = "";
+//   // editStatus.value = "";
+//   // editTaskDueDate.value = "";
 
-  if (!validFormFieldInput(editName)) {
-    errorMessageEditTN.innerHTML = "Invalid Name";
-    errorMessageEditTN.style.display = "block";
-  } else {
-    errorMessageEditTN.style.display = "none";
-  }
-  if (!validFormFieldInput(editDescription)) {
-    errorMessageEditTDES.innerHTML = "Invalid description";
-    errorMessageEditTDES.style.display = "block";
-  } else {
-    errorMessageEditTDES.style.display = "none";
-  }
-  if (!validFormFieldInput(editAssignedTo)) {
-    errorMessageEditASSTO.innerHTML = "Invalid Assigned To";
-    errorMessageEditASSTO.style.display = "block";
-  } else {
-    errorMessageEditASSTO.style.display = "none";
-  }
-  if (!validFormFieldInput(editDueDate)) {
-    errorMessageEditDD.innerHTML = "Invalid Due Date";
-    errorMessageEditDD.style.display = "block";
-  } else {
-    errorMessageEditDD.style.display = "none";
-  }
-});
-function validFormFieldInput(data) {
-  return data !== null && data !== "";
-}
+//   if (!validFormFieldInput(editName)) {
+//     errorMessageEditTN.innerHTML = "Invalid Name";
+//     errorMessageEditTN.style.display = "block";
+//   } else {
+//     errorMessageEditTN.style.display = "none";
+//   }
+//   if (!validFormFieldInput(editDescription)) {
+//     errorMessageEditTDES.innerHTML = "Invalid description";
+//     errorMessageEditTDES.style.display = "block";
+//   } else {
+//     errorMessageEditTDES.style.display = "none";
+//   }
+//   if (!validFormFieldInput(editAssignedTo)) {
+//     errorMessageEditASSTO.innerHTML = "Invalid Assigned To";
+//     errorMessageEditASSTO.style.display = "block";
+//   } else {
+//     errorMessageEditASSTO.style.display = "none";
+//   }
+//   if (!validFormFieldInput(editDueDate)) {
+//     errorMessageEditDD.innerHTML = "Invalid Due Date";
+//     errorMessageEditDD.style.display = "block";
+//   } else {
+//     errorMessageEditDD.style.display = "none";
+//   }
+// });
+
+// function validFormFieldInput(data) {
+//   return data !== null && data !== "";
+// }
