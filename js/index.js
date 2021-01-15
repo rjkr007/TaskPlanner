@@ -119,6 +119,7 @@ tasksList.addEventListener("click", (event) => {
     // Get the taskId of the parent Task.
     const taskId = Number(parentTask.dataset.taskId);
     // alert(taskId);
+    // console.log(`delete ${taskId}`);
     taskManager.deleteTask(taskId);
     taskManager.save();
     taskManager.render();
