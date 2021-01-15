@@ -65,11 +65,11 @@ ${status}</td>
 
 // create taskManager class
 class TaskManager {
-  constructor(currentId = 0) {
+   constructor(currentId = 0) {
     this.tasks = [];
     this.currentId = currentId;
   }
-
+ 
   // Add addTask method
   addTask(taskName, description, assignedTo, status, dueDate) {
     // create new object
@@ -87,10 +87,14 @@ class TaskManager {
   // Create the deleteTask method
 
   deleteTask(taskId) {
+    // console.log(`deleteTask; ${taskId}`);
     // Create an empty array and store it in a new variable, newTasks
     const newTasks = [];
     // Loop over the tasks and find the task with the id passed as a parameter
     for (let i = 0; i < this.tasks.length; i++) {
+      // alert(`length ${this.tasks.length}`);
+      // console.log(`length ${this.tasks.length}`);
+
       // current task in the loop
       const task = this.tasks[i];
       // Check if the task id is not the task id passed in as a parameter
@@ -100,6 +104,7 @@ class TaskManager {
     }
     // Set this.tasks to newTasks
     this.tasks = newTasks;
+    // console.log(`this.tasks = ${this.tasks}`);
   }
   getTaskById(taskId) {
     // variable to store the found task
@@ -123,15 +128,24 @@ class TaskManager {
 
   // Create the render method
   render() {
+    // console.log("render()");
+    // console.log(`this.tasks = ${this.tasks.length}`);
     // Create an array to store the tasks' HTML
     const tasksHtmlList = [];
-    
+    const tasksList = document.querySelector("#tasksList");
     // Loop over our tasks and create the html, storing it in the array
-    for (let i = 0; i < this.tasks.length; i++) {
-    // alert(this.tasks.length);
+    for (let i = 0; i <= this.tasks.length; i++) {
+      // alert(`length render ${this.tasks.length}`);
+      if (!this.tasks.length) {
+        tasksList.innerHTML = "";
+        return;
+      }
+      // alert(this.tasks.length);
       // Get the current task in the loop
       const task = this.tasks[i];
+      // console.log(`task = ${this.tasks[i]}`);
 
+      if (!task) return;
       // Format the date
       const date = new Date(task.duedate);
       const formattedDate =
@@ -154,7 +168,7 @@ class TaskManager {
       const tasksHtml = tasksHtmlList.join("\n");
 
       // Set the inner html of the tasksList on the page
-      const tasksList = document.querySelector("#tasksList");
+      // const tasksList = document.querySelector("#tasksList");
       tasksList.innerHTML = tasksHtml;
     }
   }
@@ -163,6 +177,8 @@ class TaskManager {
   save() {
     const tasksJson = JSON.stringify(this.tasks);
     localStorage.setItem("tasks", tasksJson);
+    // console.log(`localStorage; ${localStorage.tasksJson}`);
+    // alert(`localstorage ${localStorage.tasksJson}`);
     const currentId = String(this.currentId);
     localStorage.setItem("currentId", currentId);
   }
@@ -190,4 +206,7 @@ class TaskManager {
   }
 }
 
-module.exports = TaskManager;
+// module.exports = TaskManager;
+if (typeof module != "undefined") {
+  module.exports = TaskManager;
+}
