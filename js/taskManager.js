@@ -143,7 +143,8 @@ class TaskManager {
       // alert(this.tasks.length);
       // Get the current task in the loop
       const task = this.tasks[i];
-      // console.log(`task = ${this.tasks[i]}`);
+      // 
+      (`task = ${this.tasks[i]}`);
 
       if (!task) return;
       // Format the date
