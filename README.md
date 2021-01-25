@@ -25,7 +25,7 @@ Running the tests In vscode , deveoper needs to install npm and run tests using 
 
 ## Authors
 
-Rajeev KUMAR
+Rajeev KUMAR and 
 Naomi FLETCHER
 
 
