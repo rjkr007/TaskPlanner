@@ -8,7 +8,7 @@ const createTaskHtml = (
   status,
   dueDate
 ) => {
-  // alert(taskName);
+  // alert(status);
   return `
 <div class="container" >
       <div class="row">
@@ -22,38 +22,36 @@ const createTaskHtml = (
                   <td>${taskName}</td>
                   <td>${description}</td>
                   <td>${assignTo}</td>
-                  <td id="done" type="button" class="btn ${
-                    status === "To Do"
-                      ? "btn-outline-danger"
-                      : "btn-outline-success"
-                  }">
-${status}</td>    
+                <td id="done" type="text"
+                            > ${status}</td>    
                   <td>${dueDate}</td>    
                  <td> 
              <button class="btn btn-outline-success done-button ${
-               status === "To Do" ? "visible" : "invisible"
+               status === "DONE" ? "invisible" : "visible"
              }">Mark As Done</button>
        </td>
-                  <td>
+       <div>
+                    <td>
                     <!-- <a href="" class="btn btn-secondary"> -->
                     <button
                       type="button"
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary edit-button"
                       data-toggle="modal"
-                      data-target="#editPostModal"
+                      data-target="#addPostModal"
+                      id="editTaskButton"
                     >
                       Edit Task
-                    </button>
-                  </td>
-                  <td>
+                    </button>                  </td>
+                   
+                                                      <td>
                  
                       <div class="btn btn-outline-danger">
                         <i class="fas fa-trash delete-button"></i>
                         <!-- <i class="fas fa-trash"></i> Delete -->
-                      </div>
+                      
                     
                   </td>
-                  </tr>
+                                 </tr>
               
             </table>
           </div>
@@ -65,23 +63,32 @@ ${status}</td>
 
 // create taskManager class
 class TaskManager {
-   constructor(currentId = 0) {
+  constructor(currentId = 0) {
     this.tasks = [];
     this.currentId = currentId;
   }
- 
+
   // Add addTask method
-  addTask(taskName, description, assignedTo, status, dueDate) {
+  addTask(taskName, description, assignedTo, status = "To Do", dueDate) {
     // create new object
     const newTask = {
       id: this.currentId++,
-      taskname: taskName.trim(),
+      taskName: taskName.trim(),
       description: description.trim(),
-      assignedto: assignedTo.trim(),
-      status: "To Do",
-      duedate: dueDate,
+      assignedTo: assignedTo.trim(),
+      status: status,
+      dueDate: dueDate,
     };
     this.tasks.push(newTask);
+  }
+
+  // Edit method saves edits to task
+  editTask(editedTask, taskName, description, assignedTo, status, dueDate) {
+    editedTask.taskName = taskName;
+    editedTask.description = description;
+    editedTask.assignedTo = assignedTo;
+    editedTask.status = status;
+    editedTask.dueDate = dueDate;
   }
 
   // Create the deleteTask method
@@ -143,20 +150,21 @@ class TaskManager {
       // alert(this.tasks.length);
       // Get the current task in the loop
       const task = this.tasks[i];
-      // 
-      (`task = ${this.tasks[i]}`);
+      //
+      `task = ${this.tasks[i]}`;
 
       if (!task) return;
       // Format the date
-      const date = new Date(task.duedate);
+      const date = new Date(task.dueDate);
       const formattedDate =
         date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+      // date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
       // Create the task html
       const taskHtml = createTaskHtml(
         task.id,
-        task.taskname,
+        task.taskName,
         task.description,
-        task.assignedto,
+        task.assignedTo,
         task.status,
         formattedDate
       );

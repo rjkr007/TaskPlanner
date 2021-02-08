@@ -1,6 +1,7 @@
-.addTask {
+  
+ .addTask {
   width: 50%;
-}
+} 
 
 .done-button {
   padding: 5px;
@@ -27,12 +28,11 @@ h6 {
 }
 
 #done {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-left: 13px;
   height: 35px;
-  padding: 5px;
-  font-weight: bold;
-}
+  padding: 13px;
+ }
 
 .btn-outline-primary {
   font-weight: bold;
@@ -59,4 +59,4 @@ background-color: rgba(251, 251, 234, 0.89);
    margin-left: 340px;
    margin-bottom: 5px;
   border-radius: 5px;
-}
+} 

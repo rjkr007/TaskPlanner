@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link
@@ -71,6 +71,7 @@
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#addPostModal"
+              id="createTaskButton"
             >
               (+) Add Task
             </button>
@@ -139,7 +140,7 @@
 
     <!-- Task Edit Modal -->
 
-    <div class="modal fade" id="editPostModal">
+    <!-- <div class="modal fade" id="editPostModal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
@@ -231,7 +232,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- MODALS -->
     <!-- ADD TASK MODAL -->
@@ -240,7 +241,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Add Task</h5>
+            <h5 class="modal-title" id="createTaskModalLabel">Add Task</h5>
             <button class="close" data-dismiss="modal">
               <span>&times;</span>
             </button>
@@ -296,10 +297,10 @@
               <div class="form-group">
                 <label for="category">Status</label>
                 <select class="form-control" id="newStatus">
-                  <option value="">To Do</option>
-                  <option value="">In Progress</option>
-                  <option value="">Review</option>
-                  <option value="">Done</option>
+                  <option selected value="TO DO">To Do</option>
+                  <option value="IN PROGRESS">In Progress</option>
+                  <option value="REVIEW">Review</option>
+                  <option value="DONE">Done</option>
                 </select>
               </div>
 
@@ -320,7 +321,7 @@
                 type="reset"
                 value="Clear Form"
               />
-              <button type="submit" class="btn btn-primary btn-block pr-2">
+              <button type="submit" class="btn btn-primary btn-block pr-2" id="updateTask">
                 Add Task
               </button>
             </form>
