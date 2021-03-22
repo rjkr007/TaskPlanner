@@ -4,7 +4,7 @@ const appId = "{Your API key}";
 // getDataForCity function that fetches weather info from openweathermap api
 const getDataForCity = (city) =>
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=31abb263e377f2a36c6fb5c4be883818&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=&units=metric`
   )
     .then((response) => response.json())
     .then((data) => {
